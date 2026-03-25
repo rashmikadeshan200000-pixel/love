@@ -3,194 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forever Mine ❤️</title>
+    <title>Forever Ours ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; outline: none; }
         body { 
-            font-family: 'Poppins', sans-serif; 
-            margin: 0; overflow: hidden; 
+            font-family: 'Poppins', sans-serif; margin: 0; overflow: hidden; 
             display: flex; justify-content: center; align-items: center; 
-            min-height: 100vh; 
-            background: radial-gradient(circle, #300000 0%, #000000 100%);
+            min-height: 100vh; background: radial-gradient(circle, #200000 0%, #000000 100%);
+            cursor: crosshair;
         }
 
-        /* පාවෙන ආදර වචන */
-        .floating-love { 
-            position: absolute; color: rgba(255, 50, 50, 0.3); 
-            font-family: 'Dancing Script', cursive; font-size: 1.2rem; 
-            pointer-events: none; z-index: 1; animation: floatMove 12s linear infinite;
+        /* පාවෙන වචන ඇනිමේෂන් එක */
+        .floating-word { 
+            position: absolute; color: rgba(255, 0, 0, 0.4); 
+            font-family: 'Dancing Script', cursive; font-size: 1.8rem; 
+            pointer-events: none; z-index: 1; animation: floatUp 8s linear forwards;
         }
-        @keyframes floatMove {
+        @keyframes floatUp {
             0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(20deg); opacity: 0; }
         }
 
-        /* පින්තූර පාවෙන Frame එක */
-        .photo-container {
-            width: 200px; height: 250px; margin: 0 auto 20px;
-            background: white; padding: 10px; border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: rotate(-3deg); position: relative;
+        /* Touch කරද්දී එන හදවත් */
+        .click-heart {
+            position: absolute; color: #ff0000; font-size: 20px;
+            pointer-events: none; animation: heartFade 1s ease-out forwards;
+            z-index: 999;
         }
-        .photo-container img {
-            width: 100%; height: 180px; object-fit: cover;
-            display: none; animation: fadeImg 2s ease-in-out;
+        @keyframes heartFade {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: translateY(-50px) scale(2); opacity: 0; }
         }
-        .photo-container img.active { display: block; }
-        @keyframes fadeImg { from { opacity: 0; } to { opacity: 1; } }
 
-        /* කාඩ් එකේ ස්ටයිල් එක */
         .box-card { 
-            background: rgba(15, 0, 0, 0.85); 
-            padding: 30px; border-radius: 40px; 
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.2); 
-            border: 1px solid #400; text-align: center;
-            width: 90%; max-width: 420px; z-index: 10;
-            color: white; transition: 0.8s;
+            background: rgba(10, 0, 0, 0.9); padding: 25px; border-radius: 35px; 
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); border: 1px solid #400; 
+            text-align: center; width: 92%; max-width: 400px; z-index: 10;
+            color: white; transition: 0.5s;
         }
 
         #login-box, #main-content, #chat-page { position: absolute; }
         #main-content, #chat-page { display: none; opacity: 0; }
 
-        .letter-container {
-            font-size: 14px; line-height: 1.6; text-align: left;
-            margin-bottom: 20px; border-left: 3px solid #ff0000;
-            padding-left: 15px; font-style: italic; color: #ffcccc;
-            min-height: 100px;
-        }
+        .timer { font-size: 13px; color: #ff4d6d; margin: 15px 0; font-weight: bold; }
 
-        input {
-            width: 85%; padding: 12px; border-radius: 20px; border: 1px solid #600;
-            background: #050505; color: white; text-align: center; margin-bottom: 15px;
-            outline: none;
+        .photo-frame {
+            width: 180px; height: 220px; margin: 0 auto 15px; border: 5px solid white;
+            border-radius: 10px; overflow: hidden; transform: rotate(-2deg);
         }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .photo-frame img.active { display: block; animation: fadeIn 1.5s; }
 
-        button {
-            padding: 12px 35px; background: #b00; color: white; 
-            border: none; border-radius: 30px; font-weight: bold; 
-            cursor: pointer; box-shadow: 0 5px 15px rgba(255,0,0,0.4);
-            transition: 0.3s;
-        }
-        button:hover { transform: scale(1.05); background: #f00; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* සින්දුවට අදාළ අයිකන් එක */
-        .music-note { font-size: 24px; color: #f00; animation: spin 4s linear infinite; margin-top: 10px; display: inline-block; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .letter-text { font-size: 14px; text-align: left; border-left: 2px solid #f00; padding-left: 10px; font-style: italic; color: #ffcccc; margin-bottom: 15px; }
 
-        /* චැට් */
-        #chat-display { 
-            height: 300px; overflow-y: auto; background: rgba(0,0,0,0.7); 
-            border-radius: 20px; padding: 15px; margin-bottom: 15px;
-            display: flex; flex-direction: column; gap: 10px; border: 1px solid #300;
-        }
-        .msg { padding: 10px 15px; border-radius: 20px; font-size: 13px; max-width: 85%; }
-        .my-msg { background: linear-gradient(to right, #900, #500); align-self: flex-end; color: white; }
-        .other-msg { background: #222; align-self: flex-start; color: #ff9999; border: 1px solid #400; }
+        input { width: 85%; padding: 12px; border-radius: 20px; border: 1px solid #600; background: #000; color: white; margin-bottom: 15px; text-align: center; }
+        button { padding: 12px 30px; background: #900; color: white; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(255,0,0,0.3); }
+
+        #chat-display { height: 250px; overflow-y: auto; background: rgba(0,0,0,0.6); border-radius: 15px; padding: 10px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .msg { padding: 8px 12px; border-radius: 15px; font-size: 13px; max-width: 80%; }
+        .my-msg { background: #b00; align-self: flex-end; }
+        .other-msg { background: #333; align-self: flex-start; color: #ffaaaa; }
     </style>
 </head>
-<body>
+<body onclick="createHeart(event)">
 
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <div id="login-box" class="box-card">
         <h2 style="font-family: 'Dancing Script'; font-size: 2.2rem; color: #ff3333;">Our Secret Kingdom</h2>
-        <input type="password" id="pcode" placeholder="Enter Magic Name...">
-        <button onclick="login()">ENTER HEAVEN</button>
+        <input type="password" id="pcode" placeholder="Your Secret Name...">
+        <button onclick="login()">Open My Heart</button>
     </div>
 
     <div id="main-content" class="box-card">
-        <div class="photo-container">
+        <div class="photo-frame">
             <img src="img1.jpg" class="active">
             <img src="img2.jpg">
             <img src="img3.jpg">
-            <p style="color:#000; font-family:'Dancing Script'; font-size:1.2rem; margin:5px 0 0 0;">Us Forever ❤️</p>
+        </div>
+        
+        <div class="timer" id="timer-display">Together Since...</div>
+
+        <div class="letter-text">
+            <div id="en-letter"></div>
+            <div id="si-letter" style="font-size: 11px; color: #ff7777; margin-top: 8px;"></div>
         </div>
 
-        <div class="letter-container">
-            <div id="letter-en"></div>
-            <div id="letter-si" style="font-size: 11px; color: #ff7777; margin-top: 10px;"></div>
-        </div>
-
-        <div class="music-note">🎵</div>
-        <br><br>
         <button onclick="showChat()">SECRET CHAT</button>
     </div>
 
     <div id="chat-page" class="box-card">
-        <h3 style="margin:0 0 10px 0; color:#ff3333;">Secure Line</h3>
+        <h3 style="margin:0 0 10px 0; color: #ff3333;">Private Line</h3>
         <div id="chat-display"></div>
-        <div style="display:flex; gap:8px;">
-            <input type="text" id="chat-input" style="margin:0; flex:1;" placeholder="Type encrypted message...">
-            <button onclick="sendChat()" style="padding:10px 20px;">💌</button>
+        <div style="display:flex; gap:5px;">
+            <input type="text" id="chat-input" style="margin:0; flex:1;" placeholder="Message...">
+            <button onclick="sendChat()" style="padding:10px;">💌</button>
         </div>
-        <button onclick="backToMain()" style="background:none; box-shadow:none; font-size:11px; color:#555; margin-top:10px;">← BACK TO LETTER</button>
+        <button onclick="backToMain()" style="background:none; box-shadow:none; font-size:11px; color:#666; margin-top:10px;">← Back</button>
     </div>
 
     <script>
-        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/ultimate_chat.json";
+        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/final_chat.json";
         let currentUser = "";
-        
-        const letterEn = "My love, you are my heart's only beat. No matter where we are, our souls are forever connected. You are my dream come true.";
-        const letterSi = "(මගේ ආදරය, මගේ හදවතේ එකම ගැස්ම ඔබයි. අප කොතැනක සිටියත්, අපගේ ආත්මයන් සදහටම බැඳී ඇත. ඔබ මගේ සැබෑ වූ සිහිනයයි.)";
-        const loveWords = ["I Love You", "Te Amo", "Je t'aime", "Aishiteru", "Ti amo", "මම ඔයාට ආදරෙයි", "Forever Mine"];
+        const romanticWords = ["Amasha", "Rashmika", "Queen", "Princess", "Forever", "I Love You", "My Life", "Together"];
 
         function login() {
             const code = document.getElementById('pcode').value.trim().toLowerCase();
             if(code === "amasha" || code === "rashmika") {
                 currentUser = code.charAt(0).toUpperCase() + code.slice(1);
-                document.getElementById('login-box').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('login-box').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    setTimeout(() => document.getElementById('main-content').style.opacity = '1', 50);
-                    document.getElementById('bgMusic').play(); // සින්දුව ප්ලේ වෙනවා
-                    typeLetter();
-                    startLoveFlow();
-                    startGallery();
-                }, 800);
-            } else { alert("Access Denied!"); }
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('main-content').style.opacity = '1';
+                document.getElementById('bgMusic').play();
+                startEverything();
+            } else { alert("Wrong Access!"); }
         }
 
-        function startGallery() {
-            let imgs = document.querySelectorAll('.photo-container img');
+        function startEverything() {
+            // පාවෙන වචන
+            setInterval(() => {
+                const div = document.createElement('div');
+                div.className = 'floating-word';
+                div.innerText = romanticWords[Math.floor(Math.random() * romanticWords.length)];
+                div.style.left = Math.random() * 80 + 10 + 'vw';
+                document.body.appendChild(div);
+                setTimeout(() => div.remove(), 8000);
+            }, 1500);
+
+            // පින්තූර මාරු වීම
             let i = 0;
+            const imgs = document.querySelectorAll('.photo-frame img');
             setInterval(() => {
                 imgs[i].classList.remove('active');
                 i = (i + 1) % imgs.length;
                 imgs[i].classList.add('active');
             }, 4000);
+
+            // වෙලාව (Relationship Timer) - ඔයාගේ දවස මෙතන දාන්න (Year, Month-1, Day)
+            const startDate = new Date(2025, 10, 27); // 2025 නොවැම්බර් 27
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startDate;
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((diff / (1000 * 60)) % 60);
+                const s = Math.floor((diff / 1000) % 60);
+                document.getElementById('timer-display').innerHTML = `Together Since:<br>${d}d ${h}h ${m}m ${s}s ❤️`;
+            }, 1000);
+
+            // ලියුම
+            typeLetter();
         }
 
         function typeLetter() {
+            const en = "My love, every second with you is a blessing. You are my queen and my forever.";
+            const si = "(මගේ ආදරය, ඔබ සමඟ ගත කරන සෑම තත්පරයක්ම ආශිර්වාදයකි. ඔබ මගේ රැජින සහ මගේ සදාකාලික හිමිකාරියයි.)";
             let i = 0;
-            const enBox = document.getElementById('letter-en');
             function type() {
-                if (i < letterEn.length) {
-                    enBox.innerHTML += letterEn.charAt(i);
-                    i++;
-                    setTimeout(type, 60);
-                } else {
-                    document.getElementById('letter-si').innerText = letterSi;
-                }
+                if(i < en.length) { document.getElementById('en-letter').innerHTML += en.charAt(i); i++; setTimeout(type, 50); }
+                else { document.getElementById('si-letter').innerText = si; }
             }
             type();
         }
 
-        function startLoveFlow() {
-            setInterval(() => {
-                const div = document.createElement('div');
-                div.className = 'floating-love';
-                div.innerText = loveWords[Math.floor(Math.random() * loveWords.length)];
-                div.style.left = Math.random() * 85 + 'vw';
-                div.style.animationDuration = (Math.random() * 5 + 7) + 's';
-                document.body.appendChild(div);
-                setTimeout(() => div.remove(), 12000);
-            }, 1500);
+        // Touch Heart Animation
+        function createHeart(e) {
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
         }
 
         function showChat() {
