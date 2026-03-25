@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise for Amasha ❤️</title>
+    <title>For My Princess Amasha ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            background: linear-gradient(135deg, #fff0f6 0%, #ffdeeb 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,66 +16,64 @@
             margin: 0;
             overflow: hidden;
             text-align: center;
+            touch-action: none; /* Mobile touch effects වලට */
         }
 
         /* Login Box */
         #login-box {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
             border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
             z-index: 100;
-            transition: 0.5s;
         }
-
-        h2 { color: #d81b60; font-weight: 500; margin-bottom: 20px; }
 
         input {
-            padding: 15px;
-            width: 250px;
-            border: 2px solid #f06292;
-            border-radius: 25px;
+            padding: 12px;
+            width: 220px;
+            border: 2px solid #ff85a2;
+            border-radius: 20px;
             margin-bottom: 20px;
-            font-size: 16px;
             outline: none;
             text-align: center;
-            transition: 0.3s;
         }
-
-        input:focus { border-color: #d81b60; box-shadow: 0 0 10px rgba(216, 27, 96, 0.2); }
 
         button {
-            padding: 12px 35px;
-            background: #d81b60;
+            padding: 10px 30px;
+            background: #ff4d6d;
             color: white;
             border: none;
-            border-radius: 25px;
-            font-weight: 600;
+            border-radius: 20px;
+            font-weight: bold;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
         }
 
-        button:hover { background: #ad1457; transform: scale(1.05); }
-
-        /* Main Content Display */
+        /* Main Content */
         #main-content {
             display: none;
             width: 100%;
-            animation: fadeIn 2s ease-in;
+            z-index: 10;
+        }
+
+        .teddy-animation {
+            font-size: 50px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .photo-container {
-            width: 320px;
-            height: 380px;
+            width: 280px;
+            height: 330px;
             margin: 0 auto;
-            border: 12px solid white;
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border: 10px solid white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
-            background: #fff;
         }
 
         .photo-container img {
@@ -85,126 +83,100 @@
             display: none;
         }
 
-        .photo-container img.active { display: block; animation: zoomEffect 5s infinite alternate; }
+        .photo-container img.active { display: block; animation: zoomIn 1s; }
 
-        @keyframes zoomEffect {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        /* Text Animation */
         .romantic-text {
             font-family: 'Dancing Script', cursive;
-            color: #ad1457;
-            font-size: 2.5rem;
-            margin-top: 25px;
-            height: 60px; /* Space for typing text */
+            color: #ff4d6d;
+            font-size: 2.2rem;
+            margin-top: 15px;
         }
 
-        .sub-text {
-            color: #6d1b3c;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            opacity: 0.8;
-        }
-
-        /* Hearts */
-        .heart {
+        /* Touch Heart Effect */
+        .touch-heart {
             position: absolute;
-            color: #f06292;
+            color: #ff4d6d;
+            font-size: 25px;
             pointer-events: none;
-            z-index: 1;
+            animation: fadeOutUp 1s forwards;
+            z-index: 999;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOutUp {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+        }
+
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
-<body>
+<body onclick="createHeart(event)" ontouchstart="createHeart(event)">
 
     <audio id="mySong" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
     <div id="login-box">
-        <h2>Unlock Your Surprise ❤️</h2>
+        <div style="font-size: 40px;">🧸</div>
+        <h2 style="color: #ff4d6d;">Hey Amasha! ✨</h2>
         <input type="password" id="pass" placeholder="Enter Secret Code...">
         <br>
-        <button onclick="unlock()">Open Now</button>
-        <p id="msg" style="color: #d81b60; display: none; font-size: 13px; margin-top: 10px;">Incorrect Code! Hint: Your Name</p>
+        <button onclick="unlock()">Unlock Surprise</button>
     </div>
 
     <div id="main-content">
+        <div class="teddy-animation">🧸💖🐻</div>
         <div class="photo-container">
             <img src="img1.jpg" class="active">
             <img src="img2.jpg">
             <img src="img3.jpg">
         </div>
-        
-        <div class="romantic-text" id="typing-text"></div>
-        <div class="sub-text">MY EVERYTHING, MY AMASHA</div>
+        <div class="romantic-text" id="type-text"></div>
+        <div style="color: #ff85a2; letter-spacing: 2px; margin-top: 5px;">MY PRECIOUS PRINCESS</div>
     </div>
 
     <script>
         function unlock() {
             const code = document.getElementById('pass').value;
-            const song = document.getElementById('mySong');
-            
             if (code === "Amasha") {
-                document.getElementById('login-box').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('login-box').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    song.play();
-                    startHearts();
-                    startSlideshow();
-                    typeWriter("I Love You Forever...", 0);
-                }, 500);
-            } else {
-                document.getElementById('msg').style.display = 'block';
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('mySong').play();
+                startSlideshow();
+                typeWriter("You are my whole world...", 0);
             }
         }
 
-        // Typewriter Effect
+        // Fingerprint/Touch Effect
+        function createHeart(e) {
+            const x = e.clientX || e.touches[0].clientX;
+            const y = e.clientY || e.touches[0].clientY;
+            
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'touch-heart';
+            heart.style.left = (x - 10) + 'px';
+            heart.style.top = (y - 10) + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 1000);
+        }
+
         function typeWriter(text, i) {
             if (i < text.length) {
-                document.getElementById("typing-text").innerHTML += text.charAt(i);
+                document.getElementById("type-text").innerHTML += text.charAt(i);
                 setTimeout(() => typeWriter(text, i + 1), 150);
             }
         }
 
-        // Slideshow
-        let currentImg = 0;
         function startSlideshow() {
             const imgs = document.querySelectorAll('.photo-container img');
-            if (imgs.length > 1) {
-                setInterval(() => {
-                    imgs[currentImg].classList.remove('active');
-                    currentImg = (currentImg + 1) % imgs.length;
-                    imgs[currentImg].classList.add('active');
-                }, 4000); 
-            }
-        }
-
-        // Floating Hearts
-        function startHearts() {
+            let current = 0;
             setInterval(() => {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = '100vh';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                
-                const duration = (Math.random() * 3 + 3);
-                heart.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(-110vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], { duration: duration * 1000, easing: 'linear' });
-
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), duration * 1000);
-            }, 300);
+                imgs[current].classList.remove('active');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.add('active');
+            }, 4000);
         }
     </script>
 </body>
