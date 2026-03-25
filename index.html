@@ -6,177 +6,141 @@
     <title>For My Princess Amasha ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fff0f6 0%, #ffdeeb 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            text-align: center;
-            touch-action: none; /* Mobile touch effects වලට */
-        }
+        body { font-family: 'Poppins', sans-serif; background: #fff0f5; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        /* Snowfall Background */
+        .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(105vh); } }
 
         /* Login Box */
-        #login-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 40px;
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
-            z-index: 100;
-        }
+        #login-box { background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3); z-index: 100; text-align: center; transition: 0.8s; }
+        input { padding: 12px; border: 2px solid #ffb6c1; border-radius: 20px; outline: none; text-align: center; margin-bottom: 15px; }
+        button { padding: 10px 25px; background: #ff4d6d; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
-        input {
-            padding: 12px;
-            width: 220px;
-            border: 2px solid #ff85a2;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            outline: none;
-            text-align: center;
-        }
+        /* Main Gift Content (Hidden initially) */
+        #main-content { display: none; text-align: center; z-index: 10; width: 100%; animation: fadeIn 2s forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        button {
-            padding: 10px 30px;
-            background: #ff4d6d;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        /* Photo Frame with Zoom */
+        .photo-frame { width: 260px; height: 310px; margin: 0 auto; border: 10px solid white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); overflow: hidden; position: relative; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .photo-frame img.active { display: block; animation: zoom 6s infinite alternate; }
+        @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
-        /* Main Content */
-        #main-content {
-            display: none;
-            width: 100%;
-            z-index: 10;
-        }
+        /* Floating Bubbles */
+        .bubble { position: absolute; background: rgba(255, 182, 193, 0.4); color: #d81b60; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; pointer-events: none; animation: floatBubble 5s linear forwards; z-index: 5; }
+        @keyframes floatBubble { 0% { transform: translateY(0) scale(1); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-200px) scale(1.2); opacity: 0; } }
 
-        .teddy-animation {
-            font-size: 50px;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite;
-        }
+        /* Cursor Trail */
+        .trail { position: absolute; pointer-events: none; font-size: 14px; color: #ff69b4; animation: trailAnim 0.7s forwards; z-index: 1000; }
+        @keyframes trailAnim { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .photo-container {
-            width: 280px;
-            height: 330px;
-            margin: 0 auto;
-            border: 10px solid white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-        }
-
-        .photo-container img.active { display: block; animation: zoomIn 1s; }
-
-        .romantic-text {
-            font-family: 'Dancing Script', cursive;
-            color: #ff4d6d;
-            font-size: 2.2rem;
-            margin-top: 15px;
-        }
-
-        /* Touch Heart Effect */
-        .touch-heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 25px;
-            pointer-events: none;
-            animation: fadeOutUp 1s forwards;
-            z-index: 999;
-        }
-
-        @keyframes fadeOutUp {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
-        }
-
-        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2rem; margin-top: 15px; }
+        .counter { font-size: 14px; color: #d81b60; background: white; padding: 5px 15px; border-radius: 15px; display: inline-block; margin-top: 10px; border: 1px solid #ffb6c1; }
     </style>
 </head>
-<body onclick="createHeart(event)" ontouchstart="createHeart(event)">
+<body onmousemove="createTrail(event)" ontouchmove="createTrail(event)">
 
-    <audio id="mySong" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <div id="login-box">
-        <div style="font-size: 40px;">🧸</div>
-        <h2 style="color: #ff4d6d;">Hey Amasha! ✨</h2>
-        <input type="password" id="pass" placeholder="Enter Secret Code...">
+        <div style="font-size: 50px;">✉️</div>
+        <h2 style="color: #ff4d6d;">For My Princess</h2>
+        <input type="password" id="pcode" placeholder="Enter Secret Code...">
         <br>
-        <button onclick="unlock()">Unlock Surprise</button>
+        <button onclick="openLetter()">Open Letter</button>
     </div>
 
     <div id="main-content">
-        <div class="teddy-animation">🧸💖🐻</div>
-        <div class="photo-container">
+        <div style="font-size: 40px; animation: bounce 2s infinite;">🧸💖</div>
+        <div class="photo-frame">
             <img src="img1.jpg" class="active">
             <img src="img2.jpg">
             <img src="img3.jpg">
         </div>
-        <div class="romantic-text" id="type-text"></div>
-        <div style="color: #ff85a2; letter-spacing: 2px; margin-top: 5px;">MY PRECIOUS PRINCESS</div>
+        <div class="romantic-quote" id="type-text"></div>
+        <div class="counter">Together Since <span id="days">0</span> Days ❤️</div>
+        <div style="margin-top: 15px; color: #ff85a2; letter-spacing: 3px; font-size: 10px; font-weight: bold;">MY FOREVER AMASHA</div>
     </div>
 
     <script>
-        function unlock() {
-            const code = document.getElementById('pass').value;
-            if (code === "Amasha") {
-                document.getElementById('login-box').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                document.getElementById('mySong').play();
-                startSlideshow();
-                typeWriter("You are my whole world...", 0);
-            }
+        // 1. Snowfall Effect
+        function createSnow() {
+            const snow = document.createElement('div');
+            snow.innerHTML = '❄';
+            snow.className = 'snow';
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snow.style.opacity = Math.random();
+            document.body.appendChild(snow);
+            setTimeout(() => snow.remove(), 5000);
         }
+        setInterval(createSnow, 100);
 
-        // Fingerprint/Touch Effect
-        function createHeart(e) {
+        // 2. Cursor Trail Effect
+        function createTrail(e) {
+            const trail = document.createElement('div');
+            trail.innerHTML = '✨';
+            trail.className = 'trail';
             const x = e.clientX || e.touches[0].clientX;
             const y = e.clientY || e.touches[0].clientY;
-            
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.className = 'touch-heart';
-            heart.style.left = (x - 10) + 'px';
-            heart.style.top = (y - 10) + 'px';
-            document.body.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 1000);
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => trail.remove(), 700);
         }
 
-        function typeWriter(text, i) {
-            if (i < text.length) {
-                document.getElementById("type-text").innerHTML += text.charAt(i);
-                setTimeout(() => typeWriter(text, i + 1), 150);
+        // 3. Floating Messages
+        const messages = ["You are cute", "My Everything", "I Love You", "My Princess", "Forever Yours"];
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+            bubble.style.left = Math.random() * 80 + 10 + 'vw';
+            bubble.style.top = '70vh';
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 5000);
+        }
+
+        // 4. Main Functions
+        function openLetter() {
+            if(document.getElementById('pcode').value === "Amasha") {
+                document.getElementById('login-box').style.transform = 'scale(0) rotate(10deg)';
+                setTimeout(() => {
+                    document.getElementById('login-box').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                    document.getElementById('bgMusic').play();
+                    startLogic();
+                }, 800);
             }
         }
 
-        function startSlideshow() {
-            const imgs = document.querySelectorAll('.photo-container img');
-            let current = 0;
+        function startLogic() {
+            // Day Counter (2025-11-27)
+            let start = new Date("2025-11-27");
+            let today = new Date();
+            document.getElementById('days').innerText = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+            
+            // Slideshow
+            let imgs = document.querySelectorAll('.photo-frame img');
+            let c = 0;
             setInterval(() => {
-                imgs[current].classList.remove('active');
-                current = (current + 1) % imgs.length;
-                imgs[current].classList.add('active');
+                imgs[c].classList.remove('active');
+                c = (c + 1) % imgs.length;
+                imgs[c].classList.add('active');
             }, 4000);
+
+            // Typing & Bubbles
+            typeWriter("I promise to love you, always...", 0);
+            setInterval(createBubble, 2500);
+        }
+
+        function typeWriter(t, i) {
+            if (i < t.length) {
+                document.getElementById("type-text").innerHTML += t.charAt(i);
+                setTimeout(() => typeWriter(t, i + 1), 100);
+            }
         }
     </script>
 </body>
