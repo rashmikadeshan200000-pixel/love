@@ -6,6 +6,7 @@
     <title>Rashmika ❤️ Amasha</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
+        /* මුළු Background එකම ඇනිමේට් වෙන ලස්සන Gradient එකක් */
         body { 
             font-family: 'Poppins', sans-serif; 
             margin: 0; 
@@ -14,57 +15,63 @@
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
-            
-            /* Soft Dreamy Gradient Background with Animation */
-            background: linear-gradient(-45deg, #fff0f5, #ffe4e8, #f0e6ff, #fff5f8);
+            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #ee9ca7, #ffdde1);
             background-size: 400% 400%;
-            animation: dreamyGradient 15s ease infinite;
-            z-index: -1;
+            animation: dreamyBG 12s ease infinite;
         }
 
-        /* Background Animation */
-        @keyframes dreamyGradient {
+        @keyframes dreamyBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Words Animation */
-        .floating-word { position: absolute; color: rgba(255, 77, 109, 0.2); font-family: 'Dancing Script', cursive; font-size: 1.5rem; pointer-events: none; animation: floatAround 10s linear infinite; z-index: 0; }
-        @keyframes floatAround {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(100vw, -100vh) rotate(360deg); opacity: 0; }
+        /* පාවෙන වචන වලට අදාළ CSS */
+        .floating-word { 
+            position: absolute; 
+            color: rgba(255, 255, 255, 0.5); 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 2.2rem; 
+            pointer-events: none; 
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: floatUp 8s linear forwards;
         }
 
-        .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; z-index: 1; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(20deg); opacity: 0; }
+        }
+
+        .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; z-index: 2; font-size: 1.2rem; }
         @keyframes fall { to { transform: translateY(105vh); } }
 
-        /* Containers */
-        #login-box, #main-content, #chat-page { text-align: center; transition: 0.6s; width: 100%; max-width: 400px; padding: 20px; position: absolute; z-index: 10; }
+        /* කාඩ් එකේ ස්ටයිල් එක */
+        #login-box, #main-content, #chat-page { text-align: center; width: 100%; max-width: 380px; padding: 20px; position: absolute; z-index: 10; transition: 0.5s; }
         #main-content, #chat-page { display: none; opacity: 0; }
-        .box-card { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); }
+        .box-card { background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.5); }
 
-        /* Gallery */
-        .photo-frame { width: 250px; height: 300px; margin: 0 auto; border: 8px solid white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; position: relative; }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; opacity: 0; transition: 1s; }
+        .photo-frame { width: 260px; height: 320px; margin: 0 auto; border: 10px solid white; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); overflow: hidden; position: relative; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; opacity: 0; transition: 1.5s; }
         .photo-frame img.active { opacity: 1; }
 
-        /* Bubble Chat */
-        #chat-display { height: 320px; overflow-y: auto; background: #fdfdfd; border-radius: 20px; padding: 15px; text-align: left; margin-bottom: 15px; border: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; }
+        /* චැට් බබල්ස් */
+        #chat-display { height: 350px; overflow-y: auto; background: rgba(255,255,255,0.6); border-radius: 20px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; border: 1px solid #eee; }
         .msg-wrapper { display: flex; flex-direction: column; width: 100%; }
-        .sender-name { font-size: 9px; font-weight: bold; margin-bottom: 2px; color: #999; }
-        .msg { padding: 8px 14px; border-radius: 18px; max-width: 75%; font-size: 13px; line-height: 1.4; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .sender-name { font-size: 10px; font-weight: bold; margin-bottom: 2px; color: #777; }
+        .msg { padding: 10px 16px; border-radius: 20px; max-width: 80%; font-size: 14px; line-height: 1.4; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
 
         .rashmika-wrapper { align-items: flex-end; }
-        .rashmika-msg { background: #ff4d6d; color: white; border-bottom-right-radius: 2px; }
+        .rashmika-msg { background: #ff4d6d; color: white; border-bottom-right-radius: 4px; }
         .amasha-wrapper { align-items: flex-start; }
-        .amasha-msg { background: #ffe4e8; color: #d81b60; border-bottom-left-radius: 2px; }
+        .amasha-msg { background: #fff; color: #d81b60; border-bottom-left-radius: 4px; border: 1px solid #ffb6c1; }
 
         .chat-input-area { display: flex; gap: 8px; }
-        #chat-input { flex: 1; padding: 10px 15px; border: 2px solid #ffb6c1; border-radius: 25px; outline: none; }
-        button { padding: 10px 20px; background: #ff4d6d; color: white; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        #chat-input { flex: 1; padding: 12px 18px; border: 2px solid #ffb6c1; border-radius: 30px; outline: none; }
+        button { padding: 12px 25px; background: #ff4d6d; color: white; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.05); }
         .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 1.8rem; margin: 15px 0; min-height: 60px; }
     </style>
 </head>
@@ -73,10 +80,10 @@
     <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <div id="login-box" class="box-card">
-        <h2 style="color: #ff4d6d; font-family: 'Dancing Script', cursive;">Our Secret World</h2>
-        <input type="password" id="pcode" placeholder="Rashmika or Amasha...">
+        <h2 style="color: #ff4d6d; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Our World ❤️</h2>
+        <input type="password" id="pcode" style="width: 80%; padding: 12px; border-radius: 20px; border: 1px solid #ffb6c1; text-align: center;" placeholder="Enter Name...">
         <br><br>
-        <button onclick="login()">Enter ❤️</button>
+        <button onclick="login()">Open Surprise</button>
     </div>
 
     <div id="main-content">
@@ -86,17 +93,129 @@
             <img src="img3.jpg">
         </div>
         <div class="romantic-quote" id="type-text"></div>
-        <div style="color:#d81b60; font-size:14px; margin-bottom:20px; font-weight: bold;">Together Since <span id="days">0</span> Days ❤️</div>
-        <button onclick="showChat()" style="background:white; color:#ff4d6d; border:2px solid #ff4d6d;">Go to Secret Chat 💌</button>
+        <div style="color:#d81b60; font-size:15px; margin-bottom:20px; font-weight: bold;">Together Since <span id="days">0</span> Days ❤️</div>
+        <button onclick="showChat()" style="background:white; color:#ff4d6d; border:2px solid #ff4d6d;">Go to Secret Chat</button>
     </div>
 
     <div id="chat-page">
-        <div class="box-card">
-            <h3 style="color: #ff4d6d; margin: 0 0 10px 0; font-family: 'Dancing Script', cursive;">Secret Chat</h3>
+        <div class="box-card" style="padding: 15px;">
+            <h3 style="color: #ff4d6d; margin: 0 0 10px 0; font-family: 'Dancing Script', cursive; font-size: 1.8rem;">Secret Chat</h3>
             <div id="chat-display"></div>
             <div class="chat-input-area">
                 <input type="text" id="chat-input" placeholder="Type a message...">
                 <button onclick="sendChat()">💌</button>
             </div>
         </div>
-        <button onclick="backToMain()" style="background:none; color:#888; border:none; margin-top:1
+        <button onclick="backToMain()" style="background:none; color:#666; border:none; margin-top:10px;">← Back</button>
+    </div>
+
+    <script>
+        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/chat.json";
+        let currentUser = "";
+        let quotes = ["You are my everything...", "I love you more than words can say.", "Forever starts today. ❤️"];
+        let romanticWords = ["Love", "Amasha", "Rashmika", "Forever", "Heart", "Always", "Princess", "Queen"];
+
+        function login() {
+            const code = document.getElementById('pcode').value.trim().toLowerCase();
+            if(code === "amasha") { currentUser = "Amasha 🙇‍♀️"; proceed(); }
+            else if(code === "rashmika") { currentUser = "Rashmika 🙇‍♂️💗"; proceed(); }
+            else { alert("Wrong Name!"); }
+        }
+
+        function proceed() {
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            setTimeout(() => document.getElementById('main-content').style.opacity = '1', 50);
+            document.getElementById('bgMusic').play();
+            startGallery();
+            startFloatingWords();
+            let start = new Date("2025-11-27");
+            let today = new Date();
+            document.getElementById('days').innerText = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+            cycleQuotes(0);
+        }
+
+        function startFloatingWords() {
+            setInterval(() => {
+                const word = document.createElement('div');
+                word.className = 'floating-word';
+                word.innerText = romanticWords[Math.floor(Math.random() * romanticWords.length)];
+                word.style.left = Math.random() * 80 + 10 + 'vw';
+                word.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                document.body.appendChild(word);
+                setTimeout(() => word.remove(), 8000);
+            }, 1500);
+        }
+
+        function startGallery() {
+            let imgs = document.querySelectorAll('.photo-frame img');
+            let c = 0;
+            setInterval(() => {
+                imgs[c].classList.remove('active');
+                c = (c + 1) % imgs.length;
+                imgs[c].classList.add('active');
+            }, 4000);
+        }
+
+        function cycleQuotes(idx) {
+            let el = document.getElementById("type-text");
+            el.innerHTML = "";
+            let text = quotes[idx];
+            let i = 0;
+            function type() {
+                if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(type, 80); }
+                else { setTimeout(() => cycleQuotes((idx + 1) % quotes.length), 3000); }
+            }
+            type();
+        }
+
+        function showChat() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('chat-page').style.display = 'block';
+            setTimeout(() => document.getElementById('chat-page').style.opacity = '1', 50);
+            loadMessages();
+            setInterval(loadMessages, 3000);
+        }
+
+        function backToMain() {
+            document.getElementById('chat-page').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+
+        async function sendChat() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if(!text) return;
+            await fetch(DB_URL, { method: 'POST', body: JSON.stringify({ sender: currentUser, text: text, time: new Date().getTime() }) });
+            input.value = "";
+            loadMessages();
+        }
+
+        async function loadMessages() {
+            const res = await fetch(DB_URL);
+            const data = await res.json();
+            const display = document.getElementById('chat-display');
+            if(data) {
+                let html = "";
+                Object.values(data).sort((a,b) => a.time - b.time).forEach(m => {
+                    const isAmasha = m.sender.includes("Amasha");
+                    html += `<div class="msg-wrapper ${isAmasha ? 'amasha-wrapper' : 'rashmika-wrapper'}">
+                                <div class="sender-name">${m.sender}</div>
+                                <div class="msg ${isAmasha ? 'amasha-msg' : 'rashmika-msg'}">${m.text}</div>
+                             </div>`;
+                });
+                display.innerHTML = html;
+                display.scrollTop = display.scrollHeight;
+            }
+        }
+
+        setInterval(() => {
+            const snow = document.createElement('div');
+            snow.innerHTML = '❄'; snow.className = 'snow';
+            snow.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(snow);
+            setTimeout(() => snow.remove(), 5000);
+        }, 400);
+    </script>
+</body>
+</html>
