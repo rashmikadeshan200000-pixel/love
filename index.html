@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forever Ours ❤️</title>
+    <title>Ultimate Love App v4.0 ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; outline: none; }
         body { 
             font-family: 'Poppins', sans-serif; margin: 0; overflow: hidden; 
             display: flex; justify-content: center; align-items: center; 
-            min-height: 100vh; background: radial-gradient(circle, #200000 0%, #000000 100%);
+            min-height: 100vh; background: radial-gradient(circle, #250000 0%, #000000 100%);
             cursor: crosshair;
         }
 
-        /* පාවෙන වචන ඇනිමේෂන් එක */
+        /* පාවෙන වචන වලට කැපිලා පේන පාටක් සහ Shadow එකක් දැම්මා */
         .floating-word { 
-            position: absolute; color: rgba(255, 0, 0, 0.4); 
-            font-family: 'Dancing Script', cursive; font-size: 1.8rem; 
-            pointer-events: none; z-index: 1; animation: floatUp 8s linear forwards;
+            position: absolute; 
+            color: #ffd700; /* Gold පාට දැම්මා රතු පසුබිමේ පේන්න */
+            font-family: 'Dancing Script', cursive; 
+            font-size: 1.8rem; 
+            pointer-events: none; z-index: 1; 
+            text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.8);
+            animation: floatUp 8s linear forwards;
         }
         @keyframes floatUp {
             0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
@@ -26,7 +30,6 @@
             100% { transform: translateY(-10vh) rotate(20deg); opacity: 0; }
         }
 
-        /* Touch කරද්දී එන හදවත් */
         .click-heart {
             position: absolute; color: #ff0000; font-size: 20px;
             pointer-events: none; animation: heartFade 1s ease-out forwards;
@@ -38,8 +41,8 @@
         }
 
         .box-card { 
-            background: rgba(10, 0, 0, 0.9); padding: 25px; border-radius: 35px; 
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); border: 1px solid #400; 
+            background: rgba(15, 0, 0, 0.95); padding: 25px; border-radius: 35px; 
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3); border: 1px solid #500; 
             text-align: center; width: 92%; max-width: 400px; z-index: 10;
             color: white; transition: 0.5s;
         }
@@ -47,26 +50,29 @@
         #login-box, #main-content, #chat-page { position: absolute; }
         #main-content, #chat-page { display: none; opacity: 0; }
 
-        .timer { font-size: 13px; color: #ff4d6d; margin: 15px 0; font-weight: bold; }
+        .timer { font-size: 13px; color: #ff4d6d; margin: 10px 0; font-weight: bold; }
 
         .photo-frame {
-            width: 180px; height: 220px; margin: 0 auto 15px; border: 5px solid white;
-            border-radius: 10px; overflow: hidden; transform: rotate(-2deg);
+            width: 170px; height: 210px; margin: 0 auto 10px; border: 5px solid white;
+            border-radius: 10px; overflow: hidden; transform: rotate(-2deg); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .photo-frame img.active { display: block; animation: fadeIn 1.5s; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .letter-text { font-size: 14px; text-align: left; border-left: 2px solid #f00; padding-left: 10px; font-style: italic; color: #ffcccc; margin-bottom: 15px; }
+        .letter-text { font-size: 13px; text-align: left; border-left: 2px solid #f00; padding-left: 10px; font-style: italic; color: #ffcccc; margin-bottom: 15px; min-height: 80px; }
 
-        input { width: 85%; padding: 12px; border-radius: 20px; border: 1px solid #600; background: #000; color: white; margin-bottom: 15px; text-align: center; }
-        button { padding: 12px 30px; background: #900; color: white; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(255,0,0,0.3); }
+        input { width: 85%; padding: 12px; border-radius: 20px; border: 1px solid #600; background: #000; color: white; margin-bottom: 12px; text-align: center; }
+        
+        .btn-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #900; color: white; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 12px; }
+        button:hover { transform: scale(1.05); background: #f00; }
 
-        #chat-display { height: 250px; overflow-y: auto; background: rgba(0,0,0,0.6); border-radius: 15px; padding: 10px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
-        .msg { padding: 8px 12px; border-radius: 15px; font-size: 13px; max-width: 80%; }
-        .my-msg { background: #b00; align-self: flex-end; }
-        .other-msg { background: #333; align-self: flex-start; color: #ffaaaa; }
+        #chat-display { height: 240px; overflow-y: auto; background: rgba(0,0,0,0.8); border-radius: 15px; padding: 10px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; border: 1px solid #300; }
+        .msg { padding: 8px 12px; border-radius: 15px; font-size: 13px; max-width: 85%; line-height: 1.4; }
+        .my-msg { background: linear-gradient(to right, #900, #500); align-self: flex-end; }
+        .other-msg { background: #222; align-self: flex-start; color: #ffaaaa; border: 1px solid #444; }
     </style>
 </head>
 <body onclick="createHeart(event)">
@@ -74,9 +80,9 @@
     <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <div id="login-box" class="box-card">
-        <h2 style="font-family: 'Dancing Script'; font-size: 2.2rem; color: #ff3333;">Our Secret Kingdom</h2>
-        <input type="password" id="pcode" placeholder="Your Secret Name...">
-        <button onclick="login()">Open My Heart</button>
+        <h2 style="font-family: 'Dancing Script'; font-size: 2.2rem; color: #ff3333;">Love Terminal v4.0</h2>
+        <input type="password" id="pcode" placeholder="Unlock with Name...">
+        <button onclick="login()">INITIALIZE LOVE</button>
     </div>
 
     <div id="main-content" class="box-card">
@@ -86,30 +92,34 @@
             <img src="img3.jpg">
         </div>
         
-        <div class="timer" id="timer-display">Together Since...</div>
+        <div class="timer" id="timer-display">Syncing hearts...</div>
 
         <div class="letter-text">
             <div id="en-letter"></div>
-            <div id="si-letter" style="font-size: 11px; color: #ff7777; margin-top: 8px;"></div>
+            <div id="si-letter" style="font-size: 10.5px; color: #ff7777; margin-top: 8px; font-style: normal;"></div>
         </div>
 
-        <button onclick="showChat()">SECRET CHAT</button>
+        <div class="btn-row">
+            <button onclick="checkLove()">💖 Love Meter</button>
+            <button onclick="startHeartRain()">🌧️ Rain</button>
+        </div>
+        <button onclick="showChat()" style="width: 100%; background: #500;">ENTER SECRET CHAT</button>
     </div>
 
     <div id="chat-page" class="box-card">
-        <h3 style="margin:0 0 10px 0; color: #ff3333;">Private Line</h3>
+        <h3 style="margin:0 0 10px 0; color: #ff3333; font-size: 1rem;">End-to-End Encrypted</h3>
         <div id="chat-display"></div>
         <div style="display:flex; gap:5px;">
-            <input type="text" id="chat-input" style="margin:0; flex:1;" placeholder="Message...">
+            <input type="text" id="chat-input" style="margin:0; flex:1;" placeholder="Encrypt message...">
             <button onclick="sendChat()" style="padding:10px;">💌</button>
         </div>
-        <button onclick="backToMain()" style="background:none; box-shadow:none; font-size:11px; color:#666; margin-top:10px;">← Back</button>
+        <button onclick="backToMain()" style="background:none; box-shadow:none; font-size:10px; color:#555; margin-top:5px;">← System Root</button>
     </div>
 
     <script>
-        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/final_chat.json";
+        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/final_system_chat.json";
         let currentUser = "";
-        const romanticWords = ["Amasha", "Rashmika", "Queen", "Princess", "Forever", "I Love You", "My Life", "Together"];
+        const romanticWords = ["Amasha", "Rashmika", "Queen", "Princess", "Forever", "I Love You", "Soulmate", "Mine"];
 
         function login() {
             const code = document.getElementById('pcode').value.trim().toLowerCase();
@@ -120,11 +130,10 @@
                 document.getElementById('main-content').style.opacity = '1';
                 document.getElementById('bgMusic').play();
                 startEverything();
-            } else { alert("Wrong Access!"); }
+            } else { alert("Access Denied!"); }
         }
 
         function startEverything() {
-            // පාවෙන වචන
             setInterval(() => {
                 const div = document.createElement('div');
                 div.className = 'floating-word';
@@ -134,7 +143,6 @@
                 setTimeout(() => div.remove(), 8000);
             }, 1500);
 
-            // පින්තූර මාරු වීම
             let i = 0;
             const imgs = document.querySelectorAll('.photo-frame img');
             setInterval(() => {
@@ -143,34 +151,66 @@
                 imgs[i].classList.add('active');
             }, 4000);
 
-            // වෙලාව (Relationship Timer) - ඔයාගේ දවස මෙතන දාන්න (Year, Month-1, Day)
-            const startDate = new Date(2025, 10, 27); // 2025 නොවැම්බර් 27
+            const startDate = new Date(2025, 10, 27); 
             setInterval(() => {
-                const now = new Date();
-                const diff = now - startDate;
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const m = Math.floor((diff / (1000 * 60)) % 60);
+                const diff = new Date() - startDate;
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff / 3600000) % 24);
+                const m = Math.floor((diff / 60000) % 60);
                 const s = Math.floor((diff / 1000) % 60);
-                document.getElementById('timer-display').innerHTML = `Together Since:<br>${d}d ${h}h ${m}m ${s}s ❤️`;
+                document.getElementById('timer-display').innerHTML = `Together Since: ${d}d ${h}h ${m}m ${s}s ❤️`;
             }, 1000);
 
-            // ලියුම
             typeLetter();
         }
 
         function typeLetter() {
-            const en = "My love, every second with you is a blessing. You are my queen and my forever.";
-            const si = "(මගේ ආදරය, ඔබ සමඟ ගත කරන සෑම තත්පරයක්ම ආශිර්වාදයකි. ඔබ මගේ රැජින සහ මගේ සදාකාලික හිමිකාරියයි.)";
+            const en = "My Queen, you are the most precious person in my life. Every heartbeat of mine belongs to you. Forever and always.";
+            const si = "මගේ රැජිනිය, ඔබ මගේ ජීවිතයේ වටිනාම පුද්ගලයායි. මගේ සෑම හද ගැස්මක්ම ඔබට අයිති වේ. සදහටම සහ සැමදාටම.";
+            
             let i = 0;
-            function type() {
-                if(i < en.length) { document.getElementById('en-letter').innerHTML += en.charAt(i); i++; setTimeout(type, 50); }
-                else { document.getElementById('si-letter').innerText = si; }
+            let j = 0;
+            const enEl = document.getElementById('en-letter');
+            const siEl = document.getElementById('si-letter');
+
+            function typeEn() {
+                if(i < en.length) {
+                    enEl.innerHTML += en.charAt(i);
+                    i++;
+                    setTimeout(typeEn, 50);
+                } else {
+                    setTimeout(typeSi, 500); // ඉංග්‍රීසි එක ඉවර වෙලා පොඩි වෙලාවකින් සිංහල පටන් ගන්නවා
+                }
             }
-            type();
+
+            function typeSi() {
+                if(j < si.length) {
+                    siEl.innerHTML += si.charAt(j);
+                    j++;
+                    setTimeout(typeSi, 60); // සිංහල අකුරු ටිකක් හෙමින් ටයිප් වෙන්න හැදුවා ලස්සනට පේන්න
+                }
+            }
+
+            typeEn();
         }
 
-        // Touch Heart Animation
+        function checkLove() {
+            alert("Scanning Hearts...\nLove Score: 100%\nStatus: Inseparable Soulmates! ❤️✨");
+        }
+
+        function startHeartRain() {
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '❤️';
+                    heart.style.cssText = `position:fixed; left:${Math.random()*100}vw; top:-5vh; font-size:${Math.random()*20+15}px; transition:4s linear; z-index:2000;`;
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.style.transform = `translateY(110vh) rotate(${Math.random()*360}deg)`, 100);
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 150);
+            }
+        }
+
         function createHeart(e) {
             const heart = document.createElement('div');
             heart.className = 'click-heart';
@@ -203,18 +243,20 @@
         }
 
         async function loadMessages() {
-            const res = await fetch(DB_URL);
-            const data = await res.json();
-            const display = document.getElementById('chat-display');
-            if(data) {
-                let html = "";
-                Object.values(data).sort((a,b) => a.time - b.time).forEach(m => {
-                    const isMe = m.sender === currentUser;
-                    html += `<div class="msg ${isMe ? 'my-msg' : 'other-msg'}"><b>${m.sender}:</b> ${m.text}</div>`;
-                });
-                display.innerHTML = html;
-                display.scrollTop = display.scrollHeight;
-            }
+            try {
+                const res = await fetch(DB_URL);
+                const data = await res.json();
+                const display = document.getElementById('chat-display');
+                if(data) {
+                    let html = "";
+                    Object.values(data).sort((a,b) => a.time - b.time).forEach(m => {
+                        const isMe = m.sender === currentUser;
+                        html += `<div class="msg ${isMe ? 'my-msg' : 'other-msg'}"><b>${m.sender}:</b> ${m.text}</div>`;
+                    });
+                    display.innerHTML = html;
+                    display.scrollTop = display.scrollHeight;
+                }
+            } catch(e) {}
         }
     </script>
 </body>
