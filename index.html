@@ -9,7 +9,7 @@
         body { font-family: 'Poppins', sans-serif; background: #fff0f5; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
         
         /* Snowfall Background */
-        .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; }
+        .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; z-index: 1; }
         @keyframes fall { to { transform: translateY(105vh); } }
 
         /* Login Box */
@@ -17,9 +17,23 @@
         input { padding: 12px; border: 2px solid #ffb6c1; border-radius: 20px; outline: none; text-align: center; margin-bottom: 15px; }
         button { padding: 10px 25px; background: #ff4d6d; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; }
 
-        /* Main Gift Content (Hidden initially) */
+        /* Main Gift Content */
         #main-content { display: none; text-align: center; z-index: 10; width: 100%; animation: fadeIn 2s forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Sparkling Heart Instead of Emoji */
+        .sparkling-heart {
+            font-size: 50px;
+            color: #ff4d6d;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 77, 109, 0.5); }
+            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(255, 77, 109, 1); }
+            100% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 77, 109, 0.5); }
+        }
 
         /* Photo Frame with Zoom */
         .photo-frame { width: 260px; height: 310px; margin: 0 auto; border: 10px solid white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); overflow: hidden; position: relative; }
@@ -52,7 +66,8 @@
     </div>
 
     <div id="main-content">
-        <div style="font-size: 40px; animation: bounce 2s infinite;">🧸💖</div>
+        <div class="sparkling-heart">❤️</div>
+        
         <div class="photo-frame">
             <img src="img1.jpg" class="active">
             <img src="img2.jpg">
@@ -60,7 +75,7 @@
         </div>
         <div class="romantic-quote" id="type-text"></div>
         <div class="counter">Together Since <span id="days">0</span> Days ❤️</div>
-        <div style="margin-top: 15px; color: #ff85a2; letter-spacing: 3px; font-size: 10px; font-weight: bold;">MY FOREVER AMASHA</div>
+        <div style="margin-top: 15px; color: #ff85a2; letter-spacing: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase;">MY FOREVER AMASHA</div>
     </div>
 
     <script>
@@ -76,15 +91,15 @@
             document.body.appendChild(snow);
             setTimeout(() => snow.remove(), 5000);
         }
-        setInterval(createSnow, 100);
+        setInterval(createSnow, 150); // Slightly slower snowfall for better look
 
         // 2. Cursor Trail Effect
         function createTrail(e) {
             const trail = document.createElement('div');
             trail.innerHTML = '✨';
             trail.className = 'trail';
-            const x = e.clientX || e.touches[0].clientX;
-            const y = e.clientY || e.touches[0].clientY;
+            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
             trail.style.left = x + 'px';
             trail.style.top = y + 'px';
             document.body.appendChild(trail);
@@ -133,7 +148,7 @@
 
             // Typing & Bubbles
             typeWriter("I promise to love you, always...", 0);
-            setInterval(createBubble, 2500);
+            setInterval(createBubble, 3000); // Slightly slower bubbles
         }
 
         function typeWriter(t, i) {
