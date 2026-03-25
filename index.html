@@ -3,152 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Princess Amasha ❤️</title>
+    <title>Rashmika ❤️ Amasha</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background: #fff0f5; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        body { font-family: 'Poppins', sans-serif; background: #fff0f5; margin: 0; overflow-x: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         
-        /* Snowfall Background */
+        /* Snowfall & Trail */
         .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; z-index: 1; }
         @keyframes fall { to { transform: translateY(105vh); } }
-
-        /* Login Box */
-        #login-box { background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3); z-index: 100; text-align: center; transition: 0.8s; }
-        input { padding: 12px; border: 2px solid #ffb6c1; border-radius: 20px; outline: none; text-align: center; margin-bottom: 15px; }
-        button { padding: 10px 25px; background: #ff4d6d; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; }
-
-        /* Main Gift Content */
-        #main-content { display: none; text-align: center; z-index: 10; width: 100%; animation: fadeIn 2s forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Sparkling Heart Instead of Emoji */
-        .sparkling-heart {
-            font-size: 50px;
-            color: #ff4d6d;
-            animation: pulse 1.5s infinite;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 77, 109, 0.5); }
-            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(255, 77, 109, 1); }
-            100% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 77, 109, 0.5); }
-        }
-
-        /* Photo Frame with Zoom */
-        .photo-frame { width: 260px; height: 310px; margin: 0 auto; border: 10px solid white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); overflow: hidden; position: relative; }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        .photo-frame img.active { display: block; animation: zoom 6s infinite alternate; }
-        @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
-
-        /* Floating Bubbles */
-        .bubble { position: absolute; background: rgba(255, 182, 193, 0.4); color: #d81b60; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; pointer-events: none; animation: floatBubble 5s linear forwards; z-index: 5; }
-        @keyframes floatBubble { 0% { transform: translateY(0) scale(1); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-200px) scale(1.2); opacity: 0; } }
-
-        /* Cursor Trail */
         .trail { position: absolute; pointer-events: none; font-size: 14px; color: #ff69b4; animation: trailAnim 0.7s forwards; z-index: 1000; }
         @keyframes trailAnim { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
 
-        .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2rem; margin-top: 15px; }
-        .counter { font-size: 14px; color: #d81b60; background: white; padding: 5px 15px; border-radius: 15px; display: inline-block; margin-top: 10px; border: 1px solid #ffb6c1; }
+        /* Sections */
+        #login-box, #main-content, #chat-page { text-align: center; transition: 0.5s; width: 100%; max-width: 400px; padding: 20px; }
+        #main-content, #chat-page { display: none; }
+        .box-card { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); }
+        input { width: 85%; padding: 12px; border: 2px solid #ffb6c1; border-radius: 20px; outline: none; margin-bottom: 15px; text-align: center; font-family: inherit; }
+        button { padding: 10px 25px; background: #ff4d6d; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.05); background: #e91e63; }
+
+        /* Clock Animation */
+        .clock-container { display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.8); padding: 8px 20px; border-radius: 50px; margin-top: 15px; border: 1px solid #ffb6c1; }
+        .animated-clock { width: 20px; height: 20px; border: 2px solid #ff4d6d; border-radius: 50%; position: relative; margin-right: 10px; }
+        .animated-clock::after, .animated-clock::before { content: ''; position: absolute; background: #ff4d6d; left: 50%; top: 50%; transform-origin: bottom center; border-radius: 5px; }
+        .animated-clock::after { width: 1.5px; height: 5px; animation: rotateClock 10s linear infinite; }
+        .animated-clock::before { width: 1.5px; height: 8px; animation: rotateClock 2s linear infinite; }
+        @keyframes rotateClock { from { transform: translate(-50%, -100%) rotate(0deg); } to { transform: translate(-50%, -100%) rotate(360deg); } }
+
+        /* Chat Styling */
+        #chat-display { height: 350px; overflow-y: auto; background: #fff; border-radius: 15px; padding: 15px; text-align: left; margin-bottom: 15px; border: 1px solid #eee; display: flex; flex-direction: column; scroll-behavior: smooth; }
+        .msg-wrapper { margin-bottom: 12px; display: flex; flex-direction: column; }
+        .sender-name { font-size: 10px; font-weight: bold; margin-bottom: 2px; color: #888; }
+        .msg { padding: 10px 14px; border-radius: 18px; max-width: 80%; font-size: 13px; line-height: 1.4; position: relative; }
+        
+        .amasha-wrapper { align-items: flex-start; }
+        .amasha-msg { background: #ffe4e8; color: #d81b60; border-bottom-left-radius: 2px; }
+        
+        .rashmika-wrapper { align-items: flex-end; }
+        .rashmika-msg { background: #ff4d6d; color: white; border-bottom-right-radius: 2px; }
+
+        .chat-input-area { display: flex; gap: 8px; }
+        #chat-input { flex: 1; padding: 10px 15px; border: 1px solid #ffb6c1; border-radius: 25px; text-align: left; margin-bottom: 0; }
+        
+        .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 1.8rem; margin: 15px 0; }
+        .heart-svg { width: 50px; height: 50px; fill: #ff4d6d; animation: heartBeat 1.2s infinite; filter: drop-shadow(0 0 5px rgba(255,77,109,0.5)); }
+        @keyframes heartBeat { 0%, 30%, 60%, 100% { transform: scale(1); } 15%, 45% { transform: scale(1.2); } }
     </style>
 </head>
 <body onmousemove="createTrail(event)" ontouchmove="createTrail(event)">
 
     <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
-    <div id="login-box">
-        <div style="font-size: 50px;">✉️</div>
-        <h2 style="color: #ff4d6d;">For My Princess</h2>
-        <input type="password" id="pcode" placeholder="Enter Secret Code...">
+    <div id="login-box" class="box-card">
+        <h2 style="color: #ff4d6d; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Our Secret World</h2>
+        <input type="password" id="pcode" placeholder="Enter Rashmika or Amasha...">
         <br>
-        <button onclick="openLetter()">Open Letter</button>
+        <button onclick="login()">Enter ❤️</button>
     </div>
 
     <div id="main-content">
-        <div class="sparkling-heart">❤️</div>
-        
-        <div class="photo-frame">
-            <img src="img1.jpg" class="active">
-            <img src="img2.jpg">
-            <img src="img3.jpg">
-        </div>
+        <svg class="heart-svg" viewBox="0 0 32 32"><path d="M16 28.5L14.1 26.8C7.33 20.65 3 16.71 3 11.91C3 7.96 6.09 4.88 10.04 4.88C12.28 4.88 14.42 5.92 15.83 7.56C17.25 5.92 19.39 4.88 21.63 4.88C25.58 4.88 28.67 7.96 28.67 11.91C28.67 16.71 24.33 20.65 17.57 26.8L16 28.5Z"></path></svg>
         <div class="romantic-quote" id="type-text"></div>
-        <div class="counter">Together Since <span id="days">0</span> Days ❤️</div>
-        <div style="margin-top: 15px; color: #ff85a2; letter-spacing: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase;">MY FOREVER AMASHA</div>
+        
+        <div class="clock-container">
+            <div class="animated-clock"></div>
+            <div style="color: #d81b60; font-weight: bold; font-size: 14px;">Together Since <span id="days">0</span> Days</div>
+        </div>
+        <br><br>
+        <button onclick="showChat()">Go to Our Chat ✨</button>
+    </div>
+
+    <div id="chat-page">
+        <div class="box-card">
+            <h3 style="color: #ff4d6d; margin-top: 0; font-family: 'Dancing Script', cursive; font-size: 1.8rem;">Our Secret Chat</h3>
+            <div id="chat-display"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button onclick="sendChat()">💌</button>
+            </div>
+        </div>
+        <button onclick="backToMain()" style="background:none; color:#888; border:none; margin-top:10px; font-size: 12px;">← Back to Gallery</button>
     </div>
 
     <script>
-        // 1. Snowfall Effect
-        function createSnow() {
-            const snow = document.createElement('div');
-            snow.innerHTML = '❄';
-            snow.className = 'snow';
-            snow.style.left = Math.random() * 100 + 'vw';
-            snow.style.fontSize = Math.random() * 10 + 10 + 'px';
-            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
-            snow.style.opacity = Math.random();
-            document.body.appendChild(snow);
-            setTimeout(() => snow.remove(), 5000);
-        }
-        setInterval(createSnow, 150); // Slightly slower snowfall for better look
+        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/chat.json";
+        let currentUser = "";
 
-        // 2. Cursor Trail Effect
-        function createTrail(e) {
-            const trail = document.createElement('div');
-            trail.innerHTML = '✨';
-            trail.className = 'trail';
-            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
-            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
-            trail.style.left = x + 'px';
-            trail.style.top = y + 'px';
-            document.body.appendChild(trail);
-            setTimeout(() => trail.remove(), 700);
-        }
-
-        // 3. Floating Messages
-        const messages = ["You are cute", "My Everything", "I Love You", "My Princess", "Forever Yours"];
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            bubble.innerHTML = messages[Math.floor(Math.random() * messages.length)];
-            bubble.style.left = Math.random() * 80 + 10 + 'vw';
-            bubble.style.top = '70vh';
-            document.body.appendChild(bubble);
-            setTimeout(() => bubble.remove(), 5000);
-        }
-
-        // 4. Main Functions
-        function openLetter() {
-            if(document.getElementById('pcode').value === "Amasha") {
-                document.getElementById('login-box').style.transform = 'scale(0) rotate(10deg)';
-                setTimeout(() => {
-                    document.getElementById('login-box').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    document.getElementById('bgMusic').play();
-                    startLogic();
-                }, 800);
+        function login() {
+            const code = document.getElementById('pcode').value.trim();
+            if(code.toLowerCase() === "amasha") {
+                currentUser = "Amasha 🙇‍♀️";
+                proceed();
+            } else if(code.toLowerCase() === "rashmika") {
+                currentUser = "Rashmika 🙇‍♂️💗";
+                proceed();
+            } else {
+                alert("Please login as 'Rashmika' or 'Amasha'! ❌");
             }
         }
 
-        function startLogic() {
-            // Day Counter (2025-11-27)
-            let start = new Date("2025-11-27");
-            let today = new Date();
-            document.getElementById('days').innerText = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+        function proceed() {
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('bgMusic').play();
             
-            // Slideshow
-            let imgs = document.querySelectorAll('.photo-frame img');
-            let c = 0;
-            setInterval(() => {
-                imgs[c].classList.remove('active');
-                c = (c + 1) % imgs.length;
-                imgs[c].classList.add('active');
-            }, 4000);
+            // නිවැරදි කළ දිනය: 2025-11-27
+            let start = new Date("2025-11-27"); 
+            let today = new Date();
+            let diff = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+            document.getElementById('days').innerText = diff >= 0 ? diff : 0;
+            
+            typeWriter("I promise to love you, always... ❤️", 0);
+        }
 
-            // Typing & Bubbles
-            typeWriter("I promise to love you, always...", 0);
-            setInterval(createBubble, 3000); // Slightly slower bubbles
+        function showChat() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('chat-page').style.display = 'block';
+            loadMessages();
+            setInterval(loadMessages, 3000); 
+        }
+
+        async function sendChat() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if(!text) return;
+
+            await fetch(DB_URL, {
+                method: 'POST',
+                body: JSON.stringify({ sender: currentUser, text: text, time: new Date().getTime() })
+            });
+            input.value = "";
+            loadMessages();
+        }
+
+        async function loadMessages() {
+            try {
+                const res = await fetch(DB_URL);
+                const data = await res.json();
+                const display = document.getElementById('chat-display');
+                
+                if(data) {
+                    let chatHTML = "";
+                    Object.values(data).sort((a,b) => a.time - b.time).forEach(m => {
+                        const isAmasha = m.sender.includes("Amasha");
+                        chatHTML += `
+                            <div class="msg-wrapper ${isAmasha ? 'amasha-wrapper' : 'rashmika-wrapper'}">
+                                <div class="sender-name">${m.sender}</div>
+                                <div class="msg ${isAmasha ? 'amasha-msg' : 'rashmika-msg'}">${m.text}</div>
+                            </div>`;
+                    });
+                    display.innerHTML = chatHTML;
+                    display.scrollTop = display.scrollHeight;
+                }
+            } catch(e) { console.log("Connecting..."); }
+        }
+
+        function createSnow() {
+            const snow = document.createElement('div');
+            snow.innerHTML = '❄'; snow.className = 'snow';
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(snow);
+            setTimeout(() => snow.remove(), 5000);
+        }
+        setInterval(createSnow, 150);
+
+        function createTrail(e) {
+            const trail = document.createElement('div');
+            trail.innerHTML = '✨'; trail.className = 'trail';
+            const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+            trail.style.left = x + 'px'; trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => trail.remove(), 700);
         }
 
         function typeWriter(t, i) {
@@ -156,6 +184,11 @@
                 document.getElementById("type-text").innerHTML += t.charAt(i);
                 setTimeout(() => typeWriter(t, i + 1), 100);
             }
+        }
+
+        function backToMain() {
+            document.getElementById('chat-page').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
         }
     </script>
 </body>
