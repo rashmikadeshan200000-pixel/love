@@ -3,51 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rashmika ❤️ Amasha</title>
+    <title>For My Princess Amasha ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; background: #fff0f5; margin: 0; overflow-x: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         
-        /* Snowfall & Trail */
+        /* Snow & Trail */
         .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; z-index: 1; }
         @keyframes fall { to { transform: translateY(105vh); } }
         .trail { position: absolute; pointer-events: none; font-size: 14px; color: #ff69b4; animation: trailAnim 0.7s forwards; z-index: 1000; }
         @keyframes trailAnim { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
 
-        /* Sections */
-        #login-box, #main-content, #chat-page { text-align: center; transition: 0.5s; width: 100%; max-width: 400px; padding: 20px; }
-        #main-content, #chat-page { display: none; }
-        .box-card { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); }
-        input { width: 85%; padding: 12px; border: 2px solid #ffb6c1; border-radius: 20px; outline: none; margin-bottom: 15px; text-align: center; font-family: inherit; }
-        button { padding: 10px 25px; background: #ff4d6d; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { transform: scale(1.05); background: #e91e63; }
+        /* General Containers */
+        #login-box, #main-content, #chat-page { text-align: center; transition: 0.6s ease-in-out; width: 100%; max-width: 400px; padding: 20px; position: absolute; }
+        #main-content, #chat-page { display: none; opacity: 0; }
 
-        /* Clock Animation */
-        .clock-container { display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.8); padding: 8px 20px; border-radius: 50px; margin-top: 15px; border: 1px solid #ffb6c1; }
-        .animated-clock { width: 20px; height: 20px; border: 2px solid #ff4d6d; border-radius: 50%; position: relative; margin-right: 10px; }
-        .animated-clock::after, .animated-clock::before { content: ''; position: absolute; background: #ff4d6d; left: 50%; top: 50%; transform-origin: bottom center; border-radius: 5px; }
-        .animated-clock::after { width: 1.5px; height: 5px; animation: rotateClock 10s linear infinite; }
-        .animated-clock::before { width: 1.5px; height: 8px; animation: rotateClock 2s linear infinite; }
-        @keyframes rotateClock { from { transform: translate(-50%, -100%) rotate(0deg); } to { transform: translate(-50%, -100%) rotate(360deg); } }
+        .box-card { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); }
+        input { width: 85%; padding: 12px; border: 2px solid #ffb6c1; border-radius: 20px; outline: none; margin-bottom: 15px; text-align: center; }
+        button { padding: 12px 25px; background: #ff4d6d; color: white; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.05); }
+
+        /* Photo Gallery Styling */
+        .photo-frame { width: 250px; height: 300px; margin: 0 auto; border: 8px solid white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; position: relative; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; opacity: 0; transition: 1s; }
+        .photo-frame img.active { opacity: 1; animation: zoom 6s infinite alternate; }
+        @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        /* Romantic Elements */
+        .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 1.8rem; margin: 15px 0; min-height: 2.5rem; }
+        .days-counter { color: #d81b60; font-weight: bold; font-size: 14px; margin-bottom: 20px; }
 
         /* Chat Styling */
-        #chat-display { height: 350px; overflow-y: auto; background: #fff; border-radius: 15px; padding: 15px; text-align: left; margin-bottom: 15px; border: 1px solid #eee; display: flex; flex-direction: column; scroll-behavior: smooth; }
-        .msg-wrapper { margin-bottom: 12px; display: flex; flex-direction: column; }
-        .sender-name { font-size: 10px; font-weight: bold; margin-bottom: 2px; color: #888; }
-        .msg { padding: 10px 14px; border-radius: 18px; max-width: 80%; font-size: 13px; line-height: 1.4; position: relative; }
-        
+        #chat-display { height: 300px; overflow-y: auto; background: #fff; border-radius: 15px; padding: 15px; text-align: left; margin-bottom: 15px; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .msg-wrapper { margin-bottom: 10px; display: flex; flex-direction: column; }
+        .sender-name { font-size: 9px; font-weight: bold; margin-bottom: 2px; color: #888; }
+        .msg { padding: 8px 12px; border-radius: 15px; max-width: 80%; font-size: 13px; line-height: 1.4; }
         .amasha-wrapper { align-items: flex-start; }
         .amasha-msg { background: #ffe4e8; color: #d81b60; border-bottom-left-radius: 2px; }
-        
         .rashmika-wrapper { align-items: flex-end; }
         .rashmika-msg { background: #ff4d6d; color: white; border-bottom-right-radius: 2px; }
+        .chat-input-area { display: flex; gap: 5px; }
+        #chat-input { flex: 1; padding: 10px; border: 1px solid #ffb6c1; border-radius: 20px; text-align: left; margin: 0; }
 
-        .chat-input-area { display: flex; gap: 8px; }
-        #chat-input { flex: 1; padding: 10px 15px; border: 1px solid #ffb6c1; border-radius: 25px; text-align: left; margin-bottom: 0; }
-        
-        .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 1.8rem; margin: 15px 0; }
-        .heart-svg { width: 50px; height: 50px; fill: #ff4d6d; animation: heartBeat 1.2s infinite; filter: drop-shadow(0 0 5px rgba(255,77,109,0.5)); }
-        @keyframes heartBeat { 0%, 30%, 60%, 100% { transform: scale(1); } 15%, 45% { transform: scale(1.2); } }
+        .next-btn { background: white; color: #ff4d6d; border: 2px solid #ff4d6d; font-size: 13px; margin-top: 20px; animation: glow 2s infinite; }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 5px #ff4d6d; } 50% { box-shadow: 0 0 15px #ff4d6d; } }
     </style>
 </head>
 <body onmousemove="createTrail(event)" ontouchmove="createTrail(event)">
@@ -58,80 +57,107 @@
         <h2 style="color: #ff4d6d; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Our Secret World</h2>
         <input type="password" id="pcode" placeholder="Enter Rashmika or Amasha...">
         <br>
-        <button onclick="login()">Enter ❤️</button>
+        <button onclick="login()">Open Surprise ❤️</button>
     </div>
 
     <div id="main-content">
-        <svg class="heart-svg" viewBox="0 0 32 32"><path d="M16 28.5L14.1 26.8C7.33 20.65 3 16.71 3 11.91C3 7.96 6.09 4.88 10.04 4.88C12.28 4.88 14.42 5.92 15.83 7.56C17.25 5.92 19.39 4.88 21.63 4.88C25.58 4.88 28.67 7.96 28.67 11.91C28.67 16.71 24.33 20.65 17.57 26.8L16 28.5Z"></path></svg>
-        <div class="romantic-quote" id="type-text"></div>
-        
-        <div class="clock-container">
-            <div class="animated-clock"></div>
-            <div style="color: #d81b60; font-weight: bold; font-size: 14px;">Together Since <span id="days">0</span> Days</div>
+        <div class="photo-frame">
+            <img src="img1.jpg" class="active">
+            <img src="img2.jpg">
+            <img src="img3.jpg">
         </div>
-        <br><br>
-        <button onclick="showChat()">Go to Our Chat ✨</button>
+        <div class="romantic-quote" id="type-text"></div>
+        <div class="days-counter">Together Since <span id="days">0</span> Days ❤️</div>
+        <button class="next-btn" onclick="showChat()">Enter Our Secret Chat 💌</button>
     </div>
 
     <div id="chat-page">
         <div class="box-card">
-            <h3 style="color: #ff4d6d; margin-top: 0; font-family: 'Dancing Script', cursive; font-size: 1.8rem;">Our Secret Chat</h3>
+            <h3 style="color: #ff4d6d; margin-top: 0; font-family: 'Dancing Script', cursive;">Secret Messages</h3>
             <div id="chat-display"></div>
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type a message...">
+                <input type="text" id="chat-input" placeholder="Say something sweet...">
                 <button onclick="sendChat()">💌</button>
             </div>
         </div>
-        <button onclick="backToMain()" style="background:none; color:#888; border:none; margin-top:10px; font-size: 12px;">← Back to Gallery</button>
+        <button onclick="backToMain()" style="background:none; color:#888; border:none; margin-top:10px; font-size: 11px;">← Back to Gallery</button>
     </div>
 
     <script>
         const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/chat.json";
         let currentUser = "";
+        let quotes = [
+            "You are the best thing that ever happened to me...",
+            "Every moment with you is like a beautiful dream.",
+            "I promise to love you, always and forever.",
+            "You are my today and all of my tomorrows. ❤️"
+        ];
 
         function login() {
             const code = document.getElementById('pcode').value.trim();
-            if(code.toLowerCase() === "amasha") {
-                currentUser = "Amasha 🙇‍♀️";
-                proceed();
-            } else if(code.toLowerCase() === "rashmika") {
-                currentUser = "Rashmika 🙇‍♂️💗";
-                proceed();
-            } else {
-                alert("Please login as 'Rashmika' or 'Amasha'! ❌");
-            }
+            if(code.toLowerCase() === "amasha") { currentUser = "Amasha 🙇‍♀️"; proceed(); }
+            else if(code.toLowerCase() === "rashmika") { currentUser = "Rashmika 🙇‍♂️💗"; proceed(); }
+            else { alert("Wrong Code! ❌"); }
         }
 
         function proceed() {
-            document.getElementById('login-box').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
+            fadeOutIn('login-box', 'main-content');
             document.getElementById('bgMusic').play();
+            startGallery();
             
-            // නිවැරදි කළ දිනය: 2025-11-27
-            let start = new Date("2025-11-27"); 
+            let start = new Date("2025-11-27");
             let today = new Date();
-            let diff = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-            document.getElementById('days').innerText = diff >= 0 ? diff : 0;
+            document.getElementById('days').innerText = Math.floor((today - start) / (1000 * 60 * 60 * 24));
             
-            typeWriter("I promise to love you, always... ❤️", 0);
+            cycleQuotes(0);
         }
 
-        function showChat() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('chat-page').style.display = 'block';
-            loadMessages();
-            setInterval(loadMessages, 3000); 
+        function startGallery() {
+            let imgs = document.querySelectorAll('.photo-frame img');
+            let c = 0;
+            setInterval(() => {
+                imgs[c].classList.remove('active');
+                c = (c + 1) % imgs.length;
+                imgs[c].classList.add('active');
+            }, 4000);
+        }
+
+        function cycleQuotes(idx) {
+            let el = document.getElementById("type-text");
+            el.innerHTML = "";
+            let text = quotes[idx];
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                } else {
+                    setTimeout(() => cycleQuotes((idx + 1) % quotes.length), 3000);
+                }
+            }
+            type();
+        }
+
+        function showChat() { fadeOutIn('main-content', 'chat-page'); loadMessages(); setInterval(loadMessages, 3000); }
+        function backToMain() { fadeOutIn('chat-page', 'main-content'); }
+
+        function fadeOutIn(outId, inId) {
+            let outEl = document.getElementById(outId);
+            let inEl = document.getElementById(inId);
+            outEl.style.opacity = '0';
+            setTimeout(() => {
+                outEl.style.display = 'none';
+                inEl.style.display = 'block';
+                setTimeout(() => inEl.style.opacity = '1', 50);
+            }, 600);
         }
 
         async function sendChat() {
             const input = document.getElementById('chat-input');
             const text = input.value.trim();
             if(!text) return;
-
-            await fetch(DB_URL, {
-                method: 'POST',
-                body: JSON.stringify({ sender: currentUser, text: text, time: new Date().getTime() })
-            });
+            await fetch(DB_URL, { method: 'POST', body: JSON.stringify({ sender: currentUser, text: text, time: new Date().getTime() }) });
             input.value = "";
             loadMessages();
         }
@@ -141,21 +167,19 @@
                 const res = await fetch(DB_URL);
                 const data = await res.json();
                 const display = document.getElementById('chat-display');
-                
                 if(data) {
-                    let chatHTML = "";
+                    let html = "";
                     Object.values(data).sort((a,b) => a.time - b.time).forEach(m => {
                         const isAmasha = m.sender.includes("Amasha");
-                        chatHTML += `
-                            <div class="msg-wrapper ${isAmasha ? 'amasha-wrapper' : 'rashmika-wrapper'}">
-                                <div class="sender-name">${m.sender}</div>
-                                <div class="msg ${isAmasha ? 'amasha-msg' : 'rashmika-msg'}">${m.text}</div>
-                            </div>`;
+                        html += `<div class="msg-wrapper ${isAmasha ? 'amasha-wrapper' : 'rashmika-wrapper'}">
+                                    <div class="sender-name">${m.sender}</div>
+                                    <div class="msg ${isAmasha ? 'amasha-msg' : 'rashmika-msg'}">${m.text}</div>
+                                 </div>`;
                     });
-                    display.innerHTML = chatHTML;
+                    display.innerHTML = html;
                     display.scrollTop = display.scrollHeight;
                 }
-            } catch(e) { console.log("Connecting..."); }
+            } catch(e) {}
         }
 
         function createSnow() {
@@ -177,18 +201,6 @@
             trail.style.left = x + 'px'; trail.style.top = y + 'px';
             document.body.appendChild(trail);
             setTimeout(() => trail.remove(), 700);
-        }
-
-        function typeWriter(t, i) {
-            if (i < t.length) {
-                document.getElementById("type-text").innerHTML += t.charAt(i);
-                setTimeout(() => typeWriter(t, i + 1), 100);
-            }
-        }
-
-        function backToMain() {
-            document.getElementById('chat-page').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
         }
     </script>
 </body>
