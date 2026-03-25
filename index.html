@@ -3,176 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rashmika ❤️ Amasha</title>
+    <title>Forever Mine ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        /* මුළු Background එකම ඇනිමේට් වෙන ලස්සන Gradient එකක් */
+        * { box-sizing: border-box; }
         body { 
             font-family: 'Poppins', sans-serif; 
-            margin: 0; 
-            overflow: hidden; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+            margin: 0; overflow: hidden; 
+            display: flex; justify-content: center; align-items: center; 
             min-height: 100vh; 
-            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #ee9ca7, #ffdde1);
-            background-size: 400% 400%;
-            animation: dreamyBG 12s ease infinite;
+            /* රෝස පාට වෙනුවට ලස්සන Dark Red Gradient එකක් */
+            background: radial-gradient(circle, #430000 0%, #000000 100%);
         }
 
-        @keyframes dreamyBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* විවිධ භාෂාවලින් I Love You පාවෙන පෙනුම */
+        .floating-love { 
+            position: absolute; color: rgba(255, 50, 50, 0.4); 
+            font-family: 'Dancing Script', cursive; font-size: 1.5rem; 
+            pointer-events: none; z-index: 1; animation: floatMove 10s linear infinite;
         }
 
-        /* පාවෙන වචන වලට අදාළ CSS */
-        .floating-word { 
-            position: absolute; 
-            color: rgba(255, 255, 255, 0.5); 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 2.2rem; 
-            pointer-events: none; 
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            animation: floatUp 8s linear forwards;
+        @keyframes floatMove {
+            0% { transform: translate(0, 110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(20vw, -10vh) rotate(360deg); opacity: 0; }
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateY(-20vh) rotate(20deg); opacity: 0; }
+        /* ලියුම සහ ප්‍රධාන කාඩ් එක */
+        .box-card { 
+            background: rgba(20, 0, 0, 0.8); 
+            padding: 25px; border-radius: 30px; 
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); 
+            border: 1px solid #600; text-align: center;
+            width: 90%; max-width: 400px; z-index: 10;
+            color: white; transition: 0.5s;
         }
 
-        .snow { position: absolute; top: -10px; color: white; pointer-events: none; animation: fall linear infinite; z-index: 2; font-size: 1.2rem; }
-        @keyframes fall { to { transform: translateY(105vh); } }
-
-        /* කාඩ් එකේ ස්ටයිල් එක */
-        #login-box, #main-content, #chat-page { text-align: center; width: 100%; max-width: 380px; padding: 20px; position: absolute; z-index: 10; transition: 0.5s; }
+        #login-box, #main-content, #chat-page { position: absolute; }
         #main-content, #chat-page { display: none; opacity: 0; }
-        .box-card { background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.5); }
 
-        .photo-frame { width: 260px; height: 320px; margin: 0 auto; border: 10px solid white; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); overflow: hidden; position: relative; }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; opacity: 0; transition: 1.5s; }
-        .photo-frame img.active { opacity: 1; }
+        /* ලියුම ලියවෙන තැන */
+        .letter-container {
+            font-size: 14px; line-height: 1.6; text-align: left;
+            margin-bottom: 20px; border-left: 2px solid #ff0000;
+            padding-left: 15px; font-style: italic; color: #ffcccc;
+        }
+        .sinhala-meaning { font-size: 12px; color: #ff7777; margin-top: 10px; display: block; }
 
-        /* චැට් බබල්ස් */
-        #chat-display { height: 350px; overflow-y: auto; background: rgba(255,255,255,0.6); border-radius: 20px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; border: 1px solid #eee; }
-        .msg-wrapper { display: flex; flex-direction: column; width: 100%; }
-        .sender-name { font-size: 10px; font-weight: bold; margin-bottom: 2px; color: #777; }
-        .msg { padding: 10px 16px; border-radius: 20px; max-width: 80%; font-size: 14px; line-height: 1.4; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        input {
+            width: 80%; padding: 12px; border-radius: 20px; border: 1px solid #400;
+            background: #111; color: white; text-align: center; margin-bottom: 15px;
+        }
 
-        .rashmika-wrapper { align-items: flex-end; }
-        .rashmika-msg { background: #ff4d6d; color: white; border-bottom-right-radius: 4px; }
-        .amasha-wrapper { align-items: flex-start; }
-        .amasha-msg { background: #fff; color: #d81b60; border-bottom-left-radius: 4px; border: 1px solid #ffb6c1; }
+        button {
+            padding: 12px 30px; background: #900; color: white; 
+            border: none; border-radius: 30px; font-weight: bold; 
+            cursor: pointer; box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+        }
 
-        .chat-input-area { display: flex; gap: 8px; }
-        #chat-input { flex: 1; padding: 12px 18px; border: 2px solid #ffb6c1; border-radius: 30px; outline: none; }
-        button { padding: 12px 25px; background: #ff4d6d; color: white; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { transform: scale(1.05); }
-        .romantic-quote { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 1.8rem; margin: 15px 0; min-height: 60px; }
+        /* චැට් එක */
+        #chat-display { 
+            height: 300px; overflow-y: auto; background: rgba(0,0,0,0.5); 
+            border-radius: 15px; padding: 10px; margin-bottom: 10px;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .msg { padding: 8px 15px; border-radius: 15px; font-size: 13px; max-width: 80%; }
+        .my-msg { background: #900; align-self: flex-end; color: white; }
+        .other-msg { background: #333; align-self: flex-start; color: #ffcccc; }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
-
     <div id="login-box" class="box-card">
-        <h2 style="color: #ff4d6d; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Our World ❤️</h2>
-        <input type="password" id="pcode" style="width: 80%; padding: 12px; border-radius: 20px; border: 1px solid #ffb6c1; text-align: center;" placeholder="Enter Name...">
-        <br><br>
-        <button onclick="login()">Open Surprise</button>
+        <h2 style="font-family: 'Dancing Script'; font-size: 2rem; color: #ff3333;">Enter Our Kingdom</h2>
+        <input type="password" id="pcode" placeholder="Your Identity...">
+        <button onclick="login()">Open Heart</button>
     </div>
 
-    <div id="main-content">
-        <div class="photo-frame">
-            <img src="img1.jpg" class="active">
-            <img src="img2.jpg">
-            <img src="img3.jpg">
+    <div id="main-content" class="box-card">
+        <div class="letter-container">
+            <div id="letter-en"></div>
+            <div id="letter-si" class="sinhala-meaning"></div>
         </div>
-        <div class="romantic-quote" id="type-text"></div>
-        <div style="color:#d81b60; font-size:15px; margin-bottom:20px; font-weight: bold;">Together Since <span id="days">0</span> Days ❤️</div>
-        <button onclick="showChat()" style="background:white; color:#ff4d6d; border:2px solid #ff4d6d;">Go to Secret Chat</button>
+        <button onclick="showChat()">Enter Secret Chat</button>
     </div>
 
-    <div id="chat-page">
-        <div class="box-card" style="padding: 15px;">
-            <h3 style="color: #ff4d6d; margin: 0 0 10px 0; font-family: 'Dancing Script', cursive; font-size: 1.8rem;">Secret Chat</h3>
-            <div id="chat-display"></div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type a message...">
-                <button onclick="sendChat()">💌</button>
-            </div>
+    <div id="chat-page" class="box-card">
+        <h3 style="margin:0 0 10px 0;">Private Line</h3>
+        <div id="chat-display"></div>
+        <div style="display:flex; gap:5px;">
+            <input type="text" id="chat-input" style="margin:0; flex:1;" placeholder="Message...">
+            <button onclick="sendChat()" style="padding:10px;">💌</button>
         </div>
-        <button onclick="backToMain()" style="background:none; color:#666; border:none; margin-top:10px;">← Back</button>
+        <button onclick="backToMain()" style="background:none; box-shadow:none; font-size:12px; color:#888;">Go Back</button>
     </div>
 
     <script>
-        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/chat.json";
+        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/romantic_v3.json";
         let currentUser = "";
-        let quotes = ["You are my everything...", "I love you more than words can say.", "Forever starts today. ❤️"];
-        let romanticWords = ["Love", "Amasha", "Rashmika", "Forever", "Heart", "Always", "Princess", "Queen"];
+        
+        // ලියුමේ අන්තර්ගතය
+        const letterEn = "My love, you are the light that guides me through the darkest nights. My heart belongs only to you, forever and always.";
+        const letterSi = "(මගේ ආදරය, කළුවරම රාත්‍රීන්වල මා මෙහෙයවන ආලෝකය ඔබයි. මගේ හදවත සදහටම අයිති ඔබට පමණි.)";
+        
+        // විවිධ භාෂාවලින් I Love You
+        const loveWords = ["I Love You", "Te Amo", "Je t'aime", "Ich liebe dich", "Aishiteru", "Ti amo", "මම ඔයාට ආදරෙයි"];
 
         function login() {
             const code = document.getElementById('pcode').value.trim().toLowerCase();
-            if(code === "amasha") { currentUser = "Amasha 🙇‍♀️"; proceed(); }
-            else if(code === "rashmika") { currentUser = "Rashmika 🙇‍♂️💗"; proceed(); }
-            else { alert("Wrong Name!"); }
+            if(code === "amasha" || code === "rashmika") {
+                currentUser = code.charAt(0).toUpperCase() + code.slice(1);
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('main-content').style.opacity = '1';
+                startLoveFlow();
+                typeLetter();
+            } else { alert("Access Denied!"); }
         }
 
-        function proceed() {
-            document.getElementById('login-box').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            setTimeout(() => document.getElementById('main-content').style.opacity = '1', 50);
-            document.getElementById('bgMusic').play();
-            startGallery();
-            startFloatingWords();
-            let start = new Date("2025-11-27");
-            let today = new Date();
-            document.getElementById('days').innerText = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-            cycleQuotes(0);
-        }
-
-        function startFloatingWords() {
-            setInterval(() => {
-                const word = document.createElement('div');
-                word.className = 'floating-word';
-                word.innerText = romanticWords[Math.floor(Math.random() * romanticWords.length)];
-                word.style.left = Math.random() * 80 + 10 + 'vw';
-                word.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                document.body.appendChild(word);
-                setTimeout(() => word.remove(), 8000);
-            }, 1500);
-        }
-
-        function startGallery() {
-            let imgs = document.querySelectorAll('.photo-frame img');
-            let c = 0;
-            setInterval(() => {
-                imgs[c].classList.remove('active');
-                c = (c + 1) % imgs.length;
-                imgs[c].classList.add('active');
-            }, 4000);
-        }
-
-        function cycleQuotes(idx) {
-            let el = document.getElementById("type-text");
-            el.innerHTML = "";
-            let text = quotes[idx];
+        // ලියුම ටයිප් වෙන Animation එක
+        function typeLetter() {
             let i = 0;
+            const enBox = document.getElementById('letter-en');
             function type() {
-                if (i < text.length) { el.innerHTML += text.charAt(i); i++; setTimeout(type, 80); }
-                else { setTimeout(() => cycleQuotes((idx + 1) % quotes.length), 3000); }
+                if (i < letterEn.length) {
+                    enBox.innerHTML += letterEn.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                } else {
+                    document.getElementById('letter-si').innerText = letterSi;
+                }
             }
             type();
+        }
+
+        // I Love You වචන පාවෙන්න හැදීම
+        function startLoveFlow() {
+            setInterval(() => {
+                const div = document.createElement('div');
+                div.className = 'floating-love';
+                div.innerText = loveWords[Math.floor(Math.random() * loveWords.length)];
+                div.style.left = Math.random() * 90 + 'vw';
+                div.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                document.body.appendChild(div);
+                setTimeout(() => div.remove(), 10000);
+            }, 1000);
         }
 
         function showChat() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('chat-page').style.display = 'block';
-            setTimeout(() => document.getElementById('chat-page').style.opacity = '1', 50);
+            document.getElementById('chat-page').style.opacity = '1';
             loadMessages();
             setInterval(loadMessages, 3000);
         }
@@ -184,9 +166,8 @@
 
         async function sendChat() {
             const input = document.getElementById('chat-input');
-            const text = input.value.trim();
-            if(!text) return;
-            await fetch(DB_URL, { method: 'POST', body: JSON.stringify({ sender: currentUser, text: text, time: new Date().getTime() }) });
+            if(!input.value.trim()) return;
+            await fetch(DB_URL, { method: 'POST', body: JSON.stringify({ sender: currentUser, text: input.value, time: Date.now() }) });
             input.value = "";
             loadMessages();
         }
@@ -198,10 +179,17 @@
             if(data) {
                 let html = "";
                 Object.values(data).sort((a,b) => a.time - b.time).forEach(m => {
-                    const isAmasha = m.sender.includes("Amasha");
-                    html += `<div class="msg-wrapper ${isAmasha ? 'amasha-wrapper' : 'rashmika-wrapper'}">
-                                <div class="sender-name">${m.sender}</div>
-                                <div class="msg ${isAmasha ? 'amasha-msg' : 'rashmika-msg'}">${m.text}</div>
+                    const isMe = m.sender === currentUser;
+                    html += `<div class="msg ${isMe ? 'my-msg' : 'other-msg'}"><b>${m.sender}:</b> ${m.text}</div>`;
+                });
+                display.innerHTML = html;
+                display.scrollTop = display.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
+                          <div class="msg ${isAmasha ? 'amasha-msg' : 'rashmika-msg'}">${m.text}</div>
                              </div>`;
                 });
                 display.innerHTML = html;
