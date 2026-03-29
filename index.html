@@ -45,6 +45,7 @@
         }
 
         #login-box, #main-content, #chat-page { position: absolute; }
+        /* පරණ Display logic එක තියාගමු */
         #main-content, #chat-page { display: none; opacity: 0; }
 
         .timer { font-size: 13px; color: #ff4d6d; margin: 10px 0; font-weight: bold; }
@@ -52,10 +53,8 @@
             width: 170px; height: 210px; margin: 0 auto 10px; border: 5px solid white;
             border-radius: 10px; overflow: hidden; transform: rotate(-2deg); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        .photo-frame img.active { display: block; animation: fadeIn 1.5s; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* මෙතන id="loveImage" ඇඩ් කරලා තියෙන්නේ */
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
         .letter-text { font-size: 13px; text-align: left; border-left: 2px solid #f00; padding-left: 10px; font-style: italic; color: #ffcccc; margin-bottom: 15px; min-height: 80px; }
         input { width: 85%; padding: 12px; border-radius: 20px; border: 1px solid #600; background: #000; color: white; margin-bottom: 12px; text-align: center; }
@@ -68,7 +67,7 @@
         .other-msg { background: #222; align-self: flex-start; color: #ffaaaa; border: 1px solid #444; }
     </style>
 </head>
-<body onclick="createHeart(event)">
+<body>
 
     <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
@@ -85,144 +84,55 @@
     </div>
 
     <div id="main-content" class="box-card">
+        <div class="timer" id="timer">Loading Love...</div>
         <div class="photo-frame">
-            <img src="img1.jpg" class="active">
-            <img src="img2.jpg">
-            <img src="img3.jpg">
+            <img id="loveImage" src="" alt="Our Memory">
         </div>
-        <div class="timer" id="timer-display">Connecting...</div>
-        <div class="letter-text">
-            <div id="en-letter"></div>
-            <div id="si-letter" style="font-size: 10.5px; color: #ff7777; margin-top: 8px; font-style: normal;"></div>
-        </div>
+        <div class="letter-text" id="letter">Initializing heart connection...</div>
         <div class="btn-row">
-            <button onclick="startLoveMeter()">💖 Love Meter</button>
-            <button onclick="startHeartRain()">🌧️ Rain</button>
+            <button onclick="changePhoto()">Next Memory</button>
+            <button onclick="showMeter()">Love %</button>
         </div>
-        <button onclick="showChat()" style="width: 100%; background: #500;">ENTER SECRET CHAT</button>
+        <button onclick="goToChat()" style="width:100%; margin-top:5px; background:#440000;">OPEN SECURE CHAT</button>
     </div>
 
-    <div id="chat-page" class="box-card">
-        <h3 style="margin:0 0 10px 0; color: #ff3333; font-size: 1rem;">Secure Channel</h3>
-        <div id="chat-display"></div>
-        <div style="display:flex; gap:5px;">
-            <input type="text" id="chat-input" style="margin:0; flex:1;" placeholder="Encrypt message...">
-            <button onclick="sendChat()" style="padding:10px;">💌</button>
-        </div>
-        <button onclick="backToMain()" style="background:none; box-shadow:none; font-size:10px; color:#555; margin-top:5px;">← System Root</button>
-    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
 
     <script>
-        const DB_URL = "https://love-chat-a2ddc-default-rtdb.firebaseio.com/final_system_chat.json";
-        let currentUser = "";
-        const romanticWords = ["Amasha", "Rashmika", "Queen", "Princess", "Forever", "I Love You", "Soulmate"];
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyBLpLXvC-mVEcA15jPgPsL7UaphpyZ648o",
+            authDomain: "love-chat-a2ddc.firebaseapp.com",
+            databaseURL: "https://love-chat-a2ddc-default-rtdb.firebaseio.com",
+            projectId: "love-chat-a2ddc",
+            storageBucket: "love-chat-a2ddc.firebasestorage.app"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-        function login() {
-            const code = document.getElementById('pcode').value.trim().toLowerCase();
-            if(code === "amasha" || code === "rashmika") {
-                currentUser = code.charAt(0).toUpperCase() + code.slice(1);
-                document.getElementById('login-box').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                document.getElementById('main-content').style.opacity = '1';
-                document.getElementById('bgMusic').play();
-                startEverything();
-            } else { alert("Access Denied!"); }
-        }
-
-        function startEverything() {
-            setInterval(() => {
-                const div = document.createElement('div');
-                div.className = 'floating-word';
-                div.innerText = romanticWords[Math.floor(Math.random() * romanticWords.length)];
-                div.style.left = Math.random() * 80 + 10 + 'vw';
-                document.body.appendChild(div);
-                setTimeout(() => div.remove(), 8000);
-            }, 1500);
-
-            let i = 0;
-            const imgs = document.querySelectorAll('.photo-frame img');
-            setInterval(() => { imgs[i].classList.remove('active'); i = (i + 1) % imgs.length; imgs[i].classList.add('active'); }, 4000);
-
-            const startDate = new Date(2025, 10, 27); 
-            setInterval(() => {
-                const diff = new Date() - startDate;
-                const d = Math.floor(diff / 86400000);
-                const h = Math.floor((diff / 3600000) % 24);
-                const m = Math.floor((diff / 60000) % 60);
-                const s = Math.floor((diff / 1000) % 60);
-                document.getElementById('timer-display').innerHTML = `Since: ${d}d ${h}h ${m}m ${s}s ❤️`;
-            }, 1000);
-            typeLetter();
-        }
-
-        function typeLetter() {
-            const en = "My Queen, you are the most precious person in my life. Every heartbeat of mine belongs to you. Forever and always.";
-            const si = "මගේ රැජිනිය, ඔබ මගේ ජීවිතයේ වටිනාම පුද්ගලයායි. මගේ සෑම හද ගැස්මක්ම ඔබට අයිති වේ. සදහටම සහ සැමදාටම.";
-            let i = 0, j = 0;
-            function typeEn() {
-                if(i < en.length) { document.getElementById('en-letter').innerHTML += en.charAt(i); i++; setTimeout(typeEn, 50); }
-                else { setTimeout(typeSi, 500); }
-            }
-            function typeSi() {
-                if(j < si.length) { document.getElementById('si-letter').innerHTML += si.charAt(j); j++; setTimeout(typeSi, 60); }
-            }
-            typeEn();
-        }
-
-        // --- LOVE METER GAME ---
-        function startLoveMeter() {
-            const overlay = document.getElementById('love-overlay');
-            const numEl = document.getElementById('love-number');
-            const statusEl = document.getElementById('love-status');
-            const closeBtn = document.getElementById('close-meter-btn');
-            
-            overlay.style.display = 'flex';
-            closeBtn.style.display = 'none';
-            statusEl.innerText = "Analyzing Soul Connection...";
-            
-            let count = 0;
-            let timer = setInterval(() => {
-                count++;
-                numEl.innerText = count + "%";
-                if(count === 100) {
-                    clearInterval(timer);
-                    statusEl.innerText = "PERFECT MATCH FOUND! ❤️";
-                    numEl.style.color = "#ff0000";
-                    startHeartRain(); // 100% වුණාම හදවත් වැස්සක් එනවා
-                    closeBtn.style.display = 'inline-block';
+        // Database එකෙන් ෆොටෝ එක අරන් පෙන්නන එක
+        database.ref('currentPhoto').on('value', (snapshot) => {
+            const data = snapshot.val();
+            if(data && data.imageUrl) {
+                const imgElement = document.getElementById('loveImage');
+                if(imgElement) {
+                    imgElement.src = data.imageUrl;
+                    imgElement.style.display = 'block'; // Photo එක පෙන්නන්න
+                    imgElement.classList.add('active');
                 }
-            }, 30);
-        }
-
-        function closeMeter() { document.getElementById('love-overlay').style.display = 'none'; }
-
-        function startHeartRain() {
-            for(let i=0; i<30; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '❤️';
-                    heart.style.cssText = `position:fixed; left:${Math.random()*100}vw; top:-5vh; font-size:${Math.random()*20+15}px; transition:4s linear; z-index:2100;`;
-                    document.body.appendChild(heart);
-                    setTimeout(() => heart.style.transform = `translateY(110vh) rotate(${Math.random()*360}deg)`, 100);
-                    setTimeout(() => heart.remove(), 4000);
-                }, i * 150);
             }
-        }
+        });
 
-        function createHeart(e) {
-            const heart = document.createElement('div');
-            heart.className = 'click-heart';
-            heart.innerHTML = '❤️';
-            heart.style.left = e.clientX + 'px';
-            heart.style.top = e.clientY + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 1000);
+        // උඹේ පරණ Login සහ අනිත් Functions ටික මෙතනින් පහළට දාපන්
+        function login() {
+            // උඹේ පරණ login code එක මෙතනට දාන්න
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('main-content').style.opacity = '1';
         }
-
-        function showChat() { document.getElementById('main-content').style.display = 'none'; document.getElementById('chat-page').style.display = 'block'; document.getElementById('chat-page').style.opacity = '1'; loadMessages(); setInterval(loadMessages, 3000); }
-        function backToMain() { document.getElementById('chat-page').style.display = 'none'; document.getElementById('main-content').style.display = 'block'; }
-        async function sendChat() { const input = document.getElementById('chat-input'); if(!input.value.trim()) return; await fetch(DB_URL, { method: 'POST', body: JSON.stringify({ sender: currentUser, text: input.value, time: Date.now() }) }); input.value = ""; loadMessages(); }
-        async function loadMessages() { try { const res = await fetch(DB_URL); const data = await res.json(); const display = document.getElementById('chat-display'); if(data) { let html = ""; Object.values(data).sort((a,b) => a.time - b.time).forEach(m => { const isMe = m.sender === currentUser; html += `<div class="msg ${isMe ? 'my-msg' : 'other-msg'}"><b>${m.sender}:</b> ${m.text}</div>`; }); display.innerHTML = html; display.scrollTop = display.scrollHeight; } } catch(e) {} }
+        
+        // අනෙක් functions (createHeart, showMeter, etc.) ටිකත් මෙතනම තියාගන්න
     </script>
 </body>
 </html>
